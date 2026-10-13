@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ahmed Aly is a Senior Mobile Developer in Cairo building reliable Android and Flutter products with Kotlin, Compose, Dart, and Clean Architecture.">
+  <meta name="theme-color" content="#0b0d10">
+  <meta property="og:title" content="Ahmed Aly — Senior Mobile Developer">
+  <meta property="og:description" content="Native Android and Flutter engineering for real-time, location-aware, production mobile products.">
+  <meta property="og:type" content="website">
+  <title>Ahmed Aly — Senior Mobile Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    try {
+      const savedTheme = localStorage.getItem("portfolio-theme");
+      if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+    } catch (_) {}
+  </script>
+  <style>
+    :root {
+      --bg: #f3f2ed;
+      --surface: #fbfaf6;
+      --surface-2: #e9e7df;
+      --ink: #17191c;
+      --muted: #62666b;
+      --line: rgba(23, 25, 28, 0.13);
+      --accent: #415df5;
+      --accent-2: #d7ff54;
+      --accent-soft: rgba(65, 93, 245, 0.11);
+      --shadow: 0 28px 80px rgba(42, 44, 50, 0.13);
+      --nav-bg: rgba(243, 242, 237, 0.78);
+      --phone: #111318;
+      --phone-screen: #f5f7fb;
+      --phone-ink: #101218;
+      --route: #415df5;
+      --radius-lg: 32px;
+      --radius-md: 22px;
+      --radius-sm: 14px;
+      --max: 1180px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b0d10;
+      --surface: #12151a;
+      --surface-2: #191d23;
+      --ink: #f4f4ef;
+      --muted: #9ca2aa;
+      --line: rgba(255, 255, 255, 0.11);
+      --accent: #7f95ff;
+      --accent-2: #d7ff54;
+      --accent-soft: rgba(127, 149, 255, 0.13);
+      --shadow: 0 32px 100px rgba(0, 0, 0, 0.44);
+      --nav-bg: rgba(11, 13, 16, 0.78);
+      --phone: #050608;
+      --phone-screen: #f5f7fb;
+      --phone-ink: #101218;
+      --route: #536ff9;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 86% 2%, rgba(65, 93, 245, 0.15), transparent 28rem),
+        radial-gradient(circle at 8% 32%, rgba(215, 255, 84, 0.06), transparent 24rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 20;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+    }
+
+    ::selection { background: var(--accent-2); color: #111318; }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    svg { display: block; }
+
+    .skip-link {
+      position: fixed;
+      left: 16px;
+      top: -60px;
+      z-index: 100;
+      padding: 10px 15px;
+      border-radius: 10px;
+      background: var(--accent-2);
+      color: #111318;
+      font-weight: 800;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus { top: 16px; }
+
+    .progress {
+      position: fixed;
+      z-index: 70;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      transform: scaleX(0);
+      transform-origin: left;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    }
+
+    .shell {
+      width: min(calc(100% - 48px), var(--max));
+      margin-inline: auto;
+    }
+
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .nav-wrap.scrolled {
+      border-color: var(--line);
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px) saturate(140%);
+      -webkit-backdrop-filter: blur(20px) saturate(140%);
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-mark {
+      width: 37px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 11px;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 13px;
+      letter-spacing: -0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: -7px;
+      height: 2px;
+      background: var(--accent-2);
+      transition: right 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible { color: var(--ink); }
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after { right: 0; }
+
+    .nav-actions { display: flex; align-items: center; gap: 9px; }
+
+    .icon-button,
+    .menu-button {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .icon-button:hover,
+    .menu-button:hover { transform: translateY(-2px); background: var(--surface-2); }
+    .icon-button svg,
+    .menu-button svg { width: 18px; height: 18px; }
+    .menu-button { display: none; }
+
+    .hero {
+      min-height: calc(100svh - 76px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(400px, 0.94fr);
+      align-items: center;
+      gap: 72px;
+      padding-block: 72px 96px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 27px;
+      font-size: clamp(3.65rem, 7.2vw, 6.8rem);
+      font-family: "Manrope", Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-optical-sizing: auto;
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      font-weight: 700;
+    }
+
+    h1 .accent-word {
+      color: var(--accent-2);
+      text-shadow: 0 0 42px rgba(215, 255, 84, 0.12);
+    }
+
+    [data-theme="light"] h1 .accent-word { color: var(--accent); text-shadow: none; }
+
+    .hero-copy {
+      max-width: 625px;
+      margin-bottom: 34px;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      line-height: 1.75;
+    }
+
+    .hero-copy strong { color: var(--ink); font-weight: 720; }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .button {
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 21px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .button:hover,
+    .button:focus-visible { transform: translateY(-3px); }
+    .button svg { width: 16px; height: 16px; }
+    .button-primary { background: var(--accent-2); border-color: var(--accent-2); color: #111318; box-shadow: 0 14px 30px rgba(215, 255, 84, 0.11); }
+    .button-secondary { background: var(--surface); color: var(--ink); }
+
+    .availability {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 38px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .pulse {
+      position: relative;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #79d989;
+      box-shadow: 0 0 0 5px rgba(121, 217, 137, 0.13);
+    }
+
+    .pulse::after {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border: 1px solid #79d989;
+      border-radius: 50%;
+      animation: ping 2s ease-out infinite;
+    }
+
+    @keyframes ping { 0% { opacity: 0; transform: scale(0.55); } 30% { opacity: 0.65; } 100% { opacity: 0; transform: scale(1.35); } }
+
+    .system-visual {
+      position: relative;
+      min-height: 580px;
+      display: grid;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .system-visual::before {
+      content: "";
+      position: absolute;
+      width: 82%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(65, 93, 245, 0.28), rgba(65, 93, 245, 0.03) 52%, transparent 70%);
+      filter: blur(8px);
+      z-index: -2;
+    }
+
+    .orbit {
+      position: absolute;
+      width: 430px;
+      aspect-ratio: 1;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      z-index: -1;
+      animation: orbitSpin 24s linear infinite;
+    }
+
+    .orbit::before,
+    .orbit::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 9px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 18px rgba(215, 255, 84, 0.55);
+    }
+
+    .orbit::before { left: -5px; }
+    .orbit::after { right: -5px; background: var(--accent); box-shadow: 0 0 18px rgba(127, 149, 255, 0.55); }
+    @keyframes orbitSpin { to { transform: rotate(360deg); } }
+
+    .phone {
+      position: relative;
+      width: 292px;
+      height: 568px;
+      padding: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 49px;
+      background: var(--phone);
+      box-shadow: var(--shadow);
+      transform: rotate(4deg);
+      transition: transform 0.45s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .system-visual:hover .phone { transform: rotate(1deg) translateY(-8px); }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 17px;
+      left: 50%;
+      z-index: 3;
+      width: 80px;
+      height: 24px;
+      border-radius: 20px;
+      background: #050608;
+      transform: translateX(-50%);
+    }
+
+    .phone-screen {
+      position: relative;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 40px;
+      background: var(--phone-screen);
+      color: var(--phone-ink);
+    }
+
+    .status-row {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      right: 18px;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      font-weight: 800;
+    }
+
+    .map {
+      position: absolute;
+      inset: 0 0 182px;
+      overflow: hidden;
+      background:
+        linear-gradient(28deg, transparent 47%, rgba(255,255,255,.98) 48%, rgba(255,255,255,.98) 52%, transparent 53%),
+        linear-gradient(116deg, transparent 43%, rgba(255,255,255,.9) 44%, rgba(255,255,255,.9) 48%, transparent 49%),
+        linear-gradient(73deg, transparent 61%, rgba(255,255,255,.95) 62%, rgba(255,255,255,.95) 66%, transparent 67%),
+        #dce2db;
+    }
+
+    .map::before,
+    .map::after {
+      content: "";
+      position: absolute;
+      border-radius: 46% 54% 50% 50%;
+      background: #c8d6c5;
+    }
+
+    .map::before { width: 120px; height: 95px; top: 60px; left: -30px; transform: rotate(18deg); }
+    .map::after { width: 150px; height: 105px; right: -38px; bottom: 38px; transform: rotate(-12deg); }
+
+    .route-svg { position: absolute; inset: 50px 24px 44px; z-index: 1; overflow: visible; }
+    .route-line { fill: none; stroke: var(--route); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 12 10; animation: routeMove 1.3s linear infinite; }
+    @keyframes routeMove { to { stroke-dashoffset: -22; } }
+
+    .map-pin {
+      position: absolute;
+      z-index: 2;
+      width: 21px;
+      height: 21px;
+      display: grid;
+      place-items: center;
+      border: 5px solid var(--phone-screen);
+      border-radius: 50%;
+      background: var(--route);
+      box-shadow: 0 6px 12px rgba(16, 18, 24, 0.18);
+    }
+
+    .pin-a { top: 89px; left: 57px; }
+    .pin-b { top: 247px; right: 57px; background: #111318; }
+
+    .ride-sheet {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 210px;
+      padding: 18px 18px 16px;
+      border-radius: 28px 28px 0 0;
+      background: #fff;
+      box-shadow: 0 -12px 34px rgba(16, 18, 24, 0.08);
+    }
+
+    .sheet-handle { width: 34px; height: 4px; margin: 0 auto 16px; border-radius: 5px; background: #d8dbe0; }
+    .ride-label { margin-bottom: 4px; color: #858b94; font-size: 9px; font-weight: 800; letter-spacing: 0.11em; text-transform: uppercase; }
+    .ride-title { margin-bottom: 14px; font-size: 18px; line-height: 1.2; letter-spacing: -0.04em; font-weight: 850; }
+    .driver-card { display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid #e8e9ec; border-radius: 16px; }
+    .avatar { width: 35px; height: 35px; display: grid; place-items: center; border-radius: 50%; background: #101218; color: #fff; font-size: 10px; font-weight: 800; }
+    .driver-copy { flex: 1; }
+    .driver-name { font-size: 11px; font-weight: 850; }
+    .driver-meta { color: #858b94; font-size: 8px; }
+    .eta { padding: 6px 8px; border-radius: 8px; background: #eff1f8; color: #4058dc; font-size: 9px; font-weight: 850; }
+    .sheet-action { margin-top: 10px; padding: 9px; border-radius: 11px; background: var(--route); color: #fff; text-align: center; font-size: 9px; font-weight: 850; }
+
+    .signal {
+      position: absolute;
+      z-index: 4;
+      min-width: 145px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      color: var(--ink);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .signal strong { display: block; font-size: 11px; }
+    .signal span { display: block; color: var(--muted); font-size: 9px; }
+    .signal::before { content: ""; float: left; width: 8px; height: 8px; margin: 5px 9px 0 0; border-radius: 50%; background: var(--accent-2); }
+    .signal-one { top: 92px; left: 0; }
+    .signal-two { right: 0; bottom: 120px; animation-delay: -1.4s; }
+    .signal-two::before { background: var(--accent); }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+
+    .metrics {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-block: 1px solid var(--line);
+    }
+
+    .metric {
+      min-height: 178px;
+      padding: 38px 28px;
+      border-right: 1px solid var(--line);
+    }
+
+    .metric:last-child { border-right: 0; }
+    .metric-value { display: block; margin-bottom: 5px; font-size: clamp(2.3rem, 4vw, 4.25rem); line-height: 1; letter-spacing: -0.065em; font-weight: 820; }
+    .metric-value em { color: var(--accent-2); font-style: normal; }
+    [data-theme="light"] .metric-value em { color: var(--accent); }
+    .metric-label { color: var(--muted); font-size: 12px; font-weight: 700; }
+
+    section { padding-block: 124px; }
+    .section-head { display: grid; grid-template-columns: 0.42fr 1fr; gap: 48px; align-items: end; margin-bottom: 64px; }
+    .section-kicker { color: var(--accent); font-size: 12px; font-weight: 850; letter-spacing: 0.12em; text-transform: uppercase; }
+    .section-title { max-width: 820px; margin-bottom: 0; font-size: clamp(2.5rem, 5.4vw, 5.2rem); line-height: 0.98; letter-spacing: -0.062em; }
+    .section-title span { color: var(--muted); }
+
+    .work-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+
+    .project {
+      position: relative;
+      min-height: 570px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: 0 1px 0 rgba(255,255,255,.03) inset;
+      transition: transform 0.35s cubic-bezier(.2,.8,.2,1), border-color 0.3s ease;
+    }
+
+    .project:hover { transform: translateY(-7px); border-color: rgba(127,149,255,.48); }
+    .project-large { grid-column: span 7; }
+    .project-medium { grid-column: span 5; }
+    .project-small { grid-column: span 6; min-height: 430px; }
+    .project::after { content: ""; position: absolute; width: 290px; aspect-ratio: 1; right: -110px; bottom: -130px; border-radius: 50%; background: var(--accent-soft); filter: blur(4px); }
+    .shift-featured { padding-right: 290px; }
+    .shift-featured .project-body { max-width: 365px; }
+    .driver-featured { min-height: 620px; }
+    .driver-featured .project-body { max-width: 61%; }
+
+    .project-top { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .project-index { color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; }
+    .project-platform { padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 9px; font-weight: 850; letter-spacing: 0.08em; text-transform: uppercase; }
+    .project-body { position: relative; z-index: 2; margin-top: auto; }
+    .project-type { margin-bottom: 12px; color: var(--accent); font-size: 10px; font-weight: 850; letter-spacing: 0.12em; text-transform: uppercase; }
+    .project h3 { max-width: 550px; margin-bottom: 15px; font-size: clamp(2rem, 3.3vw, 3.35rem); line-height: 1; letter-spacing: -0.055em; }
+    .project-small h3 { font-size: clamp(1.8rem, 2.7vw, 2.7rem); }
+    .project p { max-width: 630px; margin-bottom: 23px; color: var(--muted); font-size: 13px; line-height: 1.75; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tag { padding: 7px 10px; border-radius: 8px; background: var(--surface-2); color: var(--muted); font-size: 10px; font-weight: 750; }
+
+    .project-visual {
+      position: absolute;
+      z-index: 1;
+      top: 82px;
+      right: 28px;
+      width: 44%;
+      max-width: 250px;
+      aspect-ratio: 0.73;
+      padding: 8px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 28px;
+      background: #08090c;
+      box-shadow: 0 24px 60px rgba(0,0,0,.28);
+      transform: rotate(7deg);
+      opacity: 0.92;
+    }
+
+    .project-medium .project-visual { width: 54%; opacity: 0.63; }
+    .project-visual.is-poster {
+      width: 35%;
+      max-width: 230px;
+      aspect-ratio: 9 / 16;
+      padding: 0;
+      overflow: hidden;
+      border-color: rgba(255,255,255,.2);
+      border-radius: 25px;
+      background: #30306f;
+      opacity: 1;
+      transform: rotate(3.5deg);
+    }
+    .project-visual.is-poster img { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .driver-featured .project-visual.is-poster {
+      width: 43%;
+      max-width: 205px;
+      right: 22px;
+      border-color: rgba(255,255,255,.16);
+      background: #f6f6f6;
+      opacity: 0.88;
+      transform: rotate(-3deg);
+    }
+    .project-screen { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 21px; background: linear-gradient(160deg, #e9edff, #f7f8fb 45%, #dfe5ff); }
+    .project-screen::before { content: ""; position: absolute; width: 170%; height: 40%; left: -35%; top: 21%; border: 7px solid #4962ea; border-radius: 50%; transform: rotate(-18deg); }
+    .project-screen::after { content: "Live"; position: absolute; left: 13px; bottom: 13px; padding: 7px 10px; border-radius: 9px; background: #111318; color: white; font-size: 8px; font-weight: 850; }
+
+    .project-medium .project-screen { background: linear-gradient(160deg, #d7ff54, #f5ffd7 38%, #d9e3ff); }
+    .project-medium .project-screen::before { border-color: #17191c; transform: rotate(21deg); }
+
+    .project-link {
+      width: fit-content;
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: var(--accent-2);
+      color: #111318;
+      font-size: 10px;
+      font-weight: 850;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .project-link:hover,
+    .project-link:focus-visible { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(215,255,84,.14); }
+    .project-link svg { width: 14px; height: 14px; }
+
+    .experience-layout { display: grid; grid-template-columns: 0.78fr 1.22fr; gap: 80px; }
+    .experience-intro { position: sticky; top: 120px; align-self: start; }
+    .experience-intro h2 { margin-bottom: 22px; font-size: clamp(2.5rem, 4.8vw, 4.8rem); line-height: 0.98; letter-spacing: -0.06em; }
+    .experience-intro p { max-width: 470px; color: var(--muted); }
+    .timeline { border-top: 1px solid var(--line); }
+    .role { display: grid; grid-template-columns: 125px 1fr; gap: 28px; padding: 37px 0; border-bottom: 1px solid var(--line); }
+    .role-period { color: var(--muted); font-size: 11px; font-weight: 750; line-height: 1.5; }
+    .role h3 { margin-bottom: 3px; font-size: 22px; letter-spacing: -0.035em; }
+    .role-company { margin-bottom: 17px; color: var(--accent); font-size: 12px; font-weight: 800; }
+    .role ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 13px; }
+    .role li + li { margin-top: 7px; }
+
+    .expertise-section { padding-top: 0; }
+    .expertise-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .expertise-card { grid-column: span 4; min-height: 265px; padding: 28px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
+    .expertise-card.wide { grid-column: span 8; }
+    .expertise-number { display: flex; align-items: center; justify-content: space-between; margin-bottom: 56px; color: var(--muted); font: 700 10px ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .expertise-icon { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 11px; background: var(--accent-soft); color: var(--accent); }
+    .expertise-icon svg { width: 18px; height: 18px; }
+    .expertise-card h3 { margin-bottom: 10px; font-size: 20px; letter-spacing: -0.035em; }
+    .expertise-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .skill-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 21px; }
+    .skill-cloud span { padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 9px; font-weight: 780; }
+
+    .marquee-wrap { overflow: hidden; border-block: 1px solid var(--line); }
+    .marquee { display: flex; width: max-content; padding-block: 20px; animation: marquee 24s linear infinite; }
+    .marquee-group { display: flex; align-items: center; gap: 28px; padding-right: 28px; }
+    .marquee span { display: inline-flex; align-items: center; gap: 28px; color: var(--muted); font-size: 13px; font-weight: 780; white-space: nowrap; }
+    .marquee span::after { content: "✦"; color: var(--accent-2); }
+    [data-theme="light"] .marquee span::after { color: var(--accent); }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    .contact { padding-block: 124px 48px; }
+    .contact-card { position: relative; overflow: hidden; padding: clamp(42px, 7vw, 84px); border: 1px solid var(--line); border-radius: 38px; background: var(--accent); color: #fff; }
+    .contact-card::before { content: ""; position: absolute; width: 390px; aspect-ratio: 1; right: -80px; top: -120px; border: 1px solid rgba(255,255,255,.24); border-radius: 50%; box-shadow: 0 0 0 45px rgba(255,255,255,.04), 0 0 0 90px rgba(255,255,255,.03); }
+    .contact-kicker { position: relative; z-index: 1; margin-bottom: 22px; font-size: 11px; font-weight: 850; letter-spacing: 0.13em; text-transform: uppercase; }
+    .contact h2 { position: relative; z-index: 1; max-width: 900px; margin-bottom: 37px; font-size: clamp(3rem, 7.4vw, 7.2rem); line-height: 0.9; letter-spacing: -0.07em; }
+    .contact h2 span { color: var(--accent-2); }
+    .contact-actions { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 10px; }
+    .contact .button { border-color: rgba(255,255,255,.24); background: rgba(255,255,255,.1); color: #fff; backdrop-filter: blur(10px); }
+    .contact .button-primary { border-color: var(--accent-2); background: var(--accent-2); color: #111318; }
+
+    footer { display: flex; align-items: center; justify-content: space-between; gap: 28px; padding-block: 30px; color: var(--muted); font-size: 11px; font-weight: 650; }
+    .socials { display: flex; flex-wrap: wrap; gap: 18px; }
+    .socials a { text-decoration: none; transition: color 0.2s ease; }
+    .socials a:hover { color: var(--ink); }
+
+    .whatsapp-fab {
+      position: fixed;
+      right: max(22px, env(safe-area-inset-right));
+      bottom: max(22px, env(safe-area-inset-bottom));
+      z-index: 55;
+      min-height: 54px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 16px 7px 7px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 999px;
+      background: #25d366;
+      color: #07150b;
+      box-shadow: 0 18px 45px rgba(10, 25, 16, 0.3);
+      font-size: 12px;
+      font-weight: 850;
+      text-decoration: none;
+      transition: transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s ease;
+    }
+
+    .whatsapp-fab:hover,
+    .whatsapp-fab:focus-visible {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 22px 54px rgba(37, 211, 102, 0.27);
+    }
+
+    .whatsapp-fab::before {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      z-index: -1;
+      border: 1px solid rgba(37, 211, 102, 0.45);
+      border-radius: inherit;
+      animation: whatsappPulse 2.6s ease-out infinite;
+    }
+
+    .whatsapp-icon {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(7, 21, 11, 0.11);
+    }
+
+    .whatsapp-icon svg { width: 21px; height: 21px; }
+
+    @keyframes whatsappPulse {
+      0%, 45% { opacity: 0; transform: scale(0.94); }
+      65% { opacity: 0.72; }
+      100% { opacity: 0; transform: scale(1.12); }
+    }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.75s cubic-bezier(.2,.8,.2,1), transform 0.75s cubic-bezier(.2,.8,.2,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: 0.08s; }
+    .delay-2 { transition-delay: 0.16s; }
+
+    @media (max-width: 1000px) {
+      .hero { grid-template-columns: 1fr; padding-top: 70px; }
+      .hero-copy { max-width: 720px; }
+      .system-visual { min-height: 610px; }
+      .project-large, .project-medium { grid-column: 1 / -1; }
+      .project-visual { opacity: 0.58; }
+      .shift-featured { padding-right: 38%; }
+      .shift-featured .project-body { max-width: 440px; }
+      .shift-featured .project-visual.is-poster { width: 29%; opacity: 1; }
+      .driver-featured { min-height: 590px; padding-right: 36%; }
+      .driver-featured .project-body { max-width: 460px; }
+      .driver-featured .project-visual.is-poster { width: 27%; max-width: 220px; opacity: 0.92; }
+      .experience-layout { grid-template-columns: 1fr; gap: 48px; }
+      .experience-intro { position: static; }
+      .expertise-card, .expertise-card.wide { grid-column: span 6; }
+    }
+
+    @media (max-width: 760px) {
+      .shell { width: min(calc(100% - 32px), var(--max)); }
+      nav { min-height: 68px; }
+      .nav-links {
+        position: fixed;
+        top: 68px;
+        left: 16px;
+        right: 16px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 14px; border-radius: 10px; }
+      .nav-links a:hover { background: var(--surface-2); }
+      .nav-links a::after { display: none; }
+      .menu-button { display: grid; }
+      .hero { min-height: auto; gap: 40px; padding-block: 62px 82px; }
+      h1 { font-size: clamp(3.25rem, 15vw, 5.1rem); }
+      .system-visual { min-height: 540px; transform: scale(0.88); margin-inline: -30px; }
+      .signal-one { left: 15px; }
+      .signal-two { right: 15px; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .metric:nth-child(2) { border-right: 0; }
+      .metric:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      section { padding-block: 90px; }
+      .section-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 45px; }
+      .project-large, .project-medium, .project-small { grid-column: 1 / -1; min-height: 515px; }
+      .project-small { min-height: 415px; }
+      .project-visual { top: 80px; right: 22px; width: 48%; }
+      .shift-featured { padding-right: 27px; }
+      .shift-featured .project-body { max-width: none; }
+      .shift-featured .project-visual.is-poster { width: 46%; opacity: 0.28; }
+      .driver-featured { min-height: 555px; padding-right: 27px; }
+      .driver-featured .project-body { max-width: none; }
+      .driver-featured .project-visual.is-poster { width: 46%; opacity: 0.24; }
+      .role { grid-template-columns: 1fr; gap: 10px; }
+      .expertise-card, .expertise-card.wide { grid-column: 1 / -1; }
+      .contact { padding-top: 90px; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions .button { width: 100%; }
+      .system-visual { min-height: 495px; transform: scale(0.78); margin: -30px -60px; }
+      .metric { min-height: 150px; padding: 30px 20px; }
+      .project { padding: 27px; }
+      .project-visual { opacity: 0.38; right: 2px; }
+      .contact-card { border-radius: 28px; }
+      .contact-actions .button { width: 100%; }
+      .whatsapp-fab { width: 54px; padding: 7px; }
+      .whatsapp-fab-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="progress" aria-hidden="true"></div>
+
+  <header class="nav-wrap">
+    <nav class="shell" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Ahmed Aly, home">
+        <span class="brand-mark">AA</span>
+        <span>Ahmed Aly</span>
+      </a>
+
+      <div class="nav-links" id="nav-links">
+        <a href="#work">Selected work</a>
+        <a href="#experience">Experience</a>
+        <a href="#expertise">Expertise</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-button" id="theme-toggle" type="button" aria-label="Switch color theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+        <button class="menu-button" id="menu-toggle" type="button" aria-controls="nav-links" aria-expanded="false" aria-label="Open navigation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="shell hero" id="top">
+      <div class="hero-content">
+        <p class="eyebrow reveal">Senior Mobile Developer · Cairo</p>
+        <h1 class="reveal delay-1">Mobile products that move in <span class="accent-word">real time.</span></h1>
+        <p class="hero-copy reveal delay-2">
+          I’m Ahmed, a mobile engineer with 4 years of experience building and scaling production apps across <strong>Native Android</strong> and <strong>Flutter</strong>—from live ride-hailing to last-mile logistics.
+        </p>
+        <div class="hero-actions reveal delay-2">
+          <a class="button button-primary" href="#work">
+            Explore selected work
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="button button-secondary" href="mailto:eng.ahmed.ally2@gmail.com">Start a conversation</a>
+        </div>
+        <div class="availability reveal delay-2"><span class="pulse" aria-hidden="true"></span> Open to senior mobile roles and ambitious product teams</div>
+      </div>
+
+      <div class="system-visual reveal delay-2" aria-label="Illustration of a live mobility application">
+        <div class="orbit" aria-hidden="true"></div>
+        <div class="signal signal-one"><strong>Offline-ready</strong><span>Room · Drift · Hive</span></div>
+        <div class="signal signal-two"><strong>Live systems</strong><span>Maps · GPS · Socket.IO</span></div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="status-row"><span>9:41</span><span>5G&nbsp;&nbsp; 87%</span></div>
+            <div class="map">
+              <svg class="route-svg" viewBox="0 0 220 260" aria-hidden="true"><path class="route-line" d="M30 28C37 105 153 68 128 143C108 202 191 179 188 233"/></svg>
+              <span class="map-pin pin-a"></span><span class="map-pin pin-b"></span>
+            </div>
+            <div class="ride-sheet">
+              <div class="sheet-handle"></div>
+              <div class="ride-label">Your chauffeur</div>
+              <div class="ride-title">Arriving in 3 min</div>
+              <div class="driver-card"><span class="avatar">AY</span><span class="driver-copy"><span class="driver-name">Trip is live</span><span class="driver-meta">Cairo · encrypted connection</span></span><span class="eta">2.4 km</span></div>
+              <div class="sheet-action">Track journey</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="shell metrics reveal" aria-label="Career highlights">
+      <div class="metric"><span class="metric-value"><span data-count="4">4</span><em>+</em></span><span class="metric-label">Years shipping mobile products</span></div>
+      <div class="metric"><span class="metric-value"><span data-count="2">2</span></span><span class="metric-label">Mobile ecosystems: Android + Flutter</span></div>
+      <div class="metric"><span class="metric-value"><span data-count="4">4</span></span><span class="metric-label">Production products highlighted</span></div>
+      <div class="metric"><span class="metric-value">24<em>/7</em></span><span class="metric-label">Real-world mobility workflows</span></div>
+    </div>
+
+    <section class="shell" id="work">
+      <div class="section-head reveal">
+        <div class="section-kicker">01 · Selected work</div>
+        <h2 class="section-title">Built for the moments when <span>software meets the street.</span></h2>
+      </div>
+
+      <div class="work-grid">
+        <article class="project project-large shift-featured reveal">
+          <div class="project-top"><span class="project-index">PRODUCT / 01</span><span class="project-platform">Native Android</span></div>
+          <div class="project-visual is-poster"><img src="assets/images/shift-app-promo.png" alt="SHIFT car rental application showing nearby cars and rental options" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-type">Carsharing & chauffeur</div>
+            <h3>SHIFT</h3>
+            <p>A customer mobility experience supporting bookings, maps, live trip updates, real-time communication, offline persistence, resilient networking, background work, and push notifications.</p>
+            <div class="tags"><span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">MVI</span><span class="tag">Ktor</span><span class="tag">Socket.IO</span><span class="tag">Maps SDK</span></div>
+            <a class="project-link" href="https://play.google.com/store/apps/details?id=com.innovitics.app.shift&amp;hl=en" target="_blank" rel="noreferrer">View on Google Play <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </article>
+
+        <article class="project project-medium driver-featured reveal delay-1">
+          <div class="project-top"><span class="project-index">PRODUCT / 02</span><span class="project-platform">Flutter</span></div>
+          <div class="project-visual is-poster"><img src="assets/images/shift-driver-promo.png" alt="SHIFT Driver application showing an active trip and customer contact workflow" loading="lazy"></div>
+          <div class="project-body">
+            <div class="project-type">Driver operations</div>
+            <h3>SHIFT Driver</h3>
+            <p>A cross-platform driver app for real-time dispatching, live GPS tracking, navigation, secure storage, camera and QR workflows, offline use, and push notifications.</p>
+            <div class="tags"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">BLoC</span><span class="tag">Dio</span><span class="tag">Drift</span><span class="tag">GoRouter</span></div>
+            <a class="project-link" href="https://play.google.com/store/apps/details?id=com.shift.chauffeur.driver&amp;hl=en" target="_blank" rel="noreferrer">View on Google Play <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </article>
+
+        <article class="project project-small reveal">
+          <div class="project-top"><span class="project-index">PRODUCT / 03</span><span class="project-platform">Logistics</span></div>
+          <div class="project-body">
+            <div class="project-type">Last-mile delivery</div>
+            <h3>SHIFT Logistics</h3>
+            <p>Daily logistics workflows covering driver attendance, optimized routes, shipment barcode scans, delivery monitoring, electronic proof of delivery, and vehicle-condition reporting.</p>
+            <div class="tags"><span class="tag">Route optimization</span><span class="tag">Barcode / QR</span><span class="tag">E-POD</span><span class="tag">Maps</span></div>
+          </div>
+        </article>
+
+        <article class="project project-small reveal delay-1">
+          <div class="project-top"><span class="project-index">PRODUCT / 04</span><span class="project-platform">Fleet operations</span></div>
+          <div class="project-body">
+            <div class="project-type">Internal mobility tooling</div>
+            <h3>Fleet Management</h3>
+            <p>An operations application for vehicle inspections, readiness checks, vehicle-status workflows, and secure remote lock and unlock—supporting reliable day-to-day fleet control.</p>
+            <div class="tags"><span class="tag">Kotlin</span><span class="tag">Secure storage</span><span class="tag">TLS</span><span class="tag">AES / RSA</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="marquee-wrap" aria-hidden="true">
+      <div class="marquee">
+        <div class="marquee-group"><span>Kotlin</span><span>Jetpack Compose</span><span>Flutter</span><span>Clean Architecture</span><span>Socket.IO</span><span>Offline-first</span><span>Fastlane</span><span>Mobile Security</span></div>
+        <div class="marquee-group"><span>Kotlin</span><span>Jetpack Compose</span><span>Flutter</span><span>Clean Architecture</span><span>Socket.IO</span><span>Offline-first</span><span>Fastlane</span><span>Mobile Security</span></div>
+      </div>
+    </div>
+
+    <section class="shell" id="experience">
+      <div class="experience-layout">
+        <div class="experience-intro reveal">
+          <div class="section-kicker">02 · Experience</div>
+          <h2>Four years of building, shipping, and improving.</h2>
+          <p>From multi-client delivery to mobility platforms, I work across architecture, product implementation, performance, testing, release automation, and long-term maintainability.</p>
+        </div>
+
+        <div class="timeline">
+          <article class="role reveal">
+            <div class="role-period">JAN 2024<br>— PRESENT</div>
+            <div>
+              <h3>Senior Mobile Developer</h3>
+              <div class="role-company">SHIFT Inc · Cairo, Egypt</div>
+              <ul>
+                <li>Build and maintain Native Android products and contribute to Flutter driver workflows.</li>
+                <li>Develop scalable features with Kotlin, Compose, MVI, Clean Architecture, and multi-module codebases.</li>
+                <li>Integrate maps, routing, geofencing, live GPS, Socket.IO, resilient Ktor networking, and background processing.</li>
+                <li>Automate releases with Fastlane and support reliable delivery through testing and code-quality tooling.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role reveal">
+            <div class="role-period">JAN 2023<br>— DEC 2023</div>
+            <div>
+              <h3>Mobile Developer</h3>
+              <div class="role-company">SURE International Technology · Cairo, Egypt</div>
+              <ul>
+                <li>Delivered Android and Flutter applications across multiple client engagements.</li>
+                <li>Built maintainable features using Kotlin, Java, Dart, Jetpack, Flutter, MVVM, BLoC, and Clean Architecture.</li>
+                <li>Integrated APIs and real-time services while improving application performance and stability.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role reveal">
+            <div class="role-period">2016<br>— 2020</div>
+            <div>
+              <h3>Bachelor’s Degree in Computer Science</h3>
+              <div class="role-company">Faculty of Science · Zagazig University</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell expertise-section" id="expertise">
+      <div class="section-head reveal">
+        <div class="section-kicker">03 · Expertise</div>
+        <h2 class="section-title">Deep mobile craft, <span>from UI to infrastructure.</span></h2>
+      </div>
+
+      <div class="expertise-grid">
+        <article class="expertise-card wide reveal">
+          <div class="expertise-number"><span>01</span><span class="expertise-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M10 18h4"/></svg></span></div>
+          <h3>Native Android & cross-platform</h3>
+          <p>Production engineering across Kotlin, Java, Jetpack Compose, XML, Flutter, and Dart—with native integration when platform-specific behavior matters.</p>
+          <div class="skill-cloud"><span>Kotlin</span><span>Compose</span><span>Java</span><span>Flutter</span><span>Dart</span><span>MethodChannel</span><span>Swift</span></div>
+        </article>
+
+        <article class="expertise-card reveal delay-1">
+          <div class="expertise-number"><span>02</span><span class="expertise-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3l8 4.5-8 4.5-8-4.5L12 3z"/><path d="M4 12l8 4.5 8-4.5M4 16.5l8 4.5 8-4.5"/></svg></span></div>
+          <h3>Architecture at scale</h3>
+          <p>MVI, MVVM, BLoC, Clean Architecture, feature-first modularization, repository patterns, SOLID, and dependency injection.</p>
+        </article>
+
+        <article class="expertise-card reveal">
+          <div class="expertise-number"><span>03</span><span class="expertise-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12a8 8 0 0116 0M7 12a5 5 0 0110 0M10 12a2 2 0 014 0"/><circle cx="12" cy="17" r="1"/></svg></span></div>
+          <h3>Real-time & resilient</h3>
+          <p>Socket.IO, REST, Ktor, Retrofit, Dio, circuit breakers, coroutines, Flow, Dart Streams, and reliable fallback strategies.</p>
+        </article>
+
+        <article class="expertise-card reveal delay-1">
+          <div class="expertise-number"><span>04</span><span class="expertise-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span></div>
+          <h3>Security & reliability</h3>
+          <p>Keystore, certificate pinning, TLS, AES/RSA, secure storage, offline persistence, background services, and app diagnostics.</p>
+        </article>
+
+        <article class="expertise-card reveal delay-2">
+          <div class="expertise-number"><span>05</span><span class="expertise-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 17l5-5 4 4 7-8"/><path d="M14 8h6v6"/></svg></span></div>
+          <h3>Quality & delivery</h3>
+          <p>JUnit, MockK, Turbine, Flutter Test, BLoC Test, integration testing, static analysis, Fastlane, and Firebase App Distribution.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="shell contact" id="contact">
+      <div class="contact-card reveal">
+        <div class="contact-kicker">Available for the right opportunity</div>
+        <h2>Let’s build something people can <span>rely on.</span></h2>
+        <div class="contact-actions">
+          <a class="button button-primary" href="mailto:eng.ahmed.ally2@gmail.com">eng.ahmed.ally2@gmail.com</a>
+          <a class="button" href="https://wa.me/qr/HVMYVHPY7NHTC1" target="_blank" rel="noreferrer">WhatsApp ↗</a>
+          <a class="button" href="assets/docs/Ahmed_Aly_Senior_Mobile_Developer.pdf" download>Download résumé</a>
+          <a class="button" href="https://www.linkedin.com/in/ahmed-younis-4352a5272/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <span>© <span id="year">2026</span> Ahmed Aly · Senior Mobile Developer · Cairo</span>
+    <div class="socials">
+      <a href="https://github.com/eng-ahmed-younis" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/ahmed-younis-4352a5272/" target="_blank" rel="noreferrer">LinkedIn</a>
+      <a href="https://medium.com/@ahmed.ally2" target="_blank" rel="noreferrer">Medium</a>
+      <a href="https://wa.me/qr/HVMYVHPY7NHTC1" target="_blank" rel="noreferrer">WhatsApp</a>
+      <a href="tel:+201225108720">Call</a>
+    </div>
+  </footer>
+
+  <a class="whatsapp-fab" href="https://wa.me/qr/HVMYVHPY7NHTC1" target="_blank" rel="noreferrer" aria-label="Chat with Ahmed on WhatsApp">
+    <span class="whatsapp-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.6a8.5 8.5 0 01-12.6 7.45L3 20.5l1.45-4.75A8.5 8.5 0 1120.5 11.6z"/><path d="M8.2 7.5c.2-.45.42-.46.7-.47h.6c.2 0 .42.08.53.36l.77 1.85c.08.21.04.4-.08.58l-.58.76c-.12.15-.2.3-.08.5.55.95 1.34 1.72 2.3 2.28.2.12.36.1.5-.07l.77-.92c.15-.18.35-.22.56-.13l1.92.9c.22.1.36.25.38.46.03.25-.08 1.45-.65 2.02-.48.48-1.16.75-1.95.72-1.08-.04-2.64-.56-4.4-2.1-2.05-1.8-3.1-4.04-3.13-5.2-.02-.66.24-1.33.64-1.74z"/></svg>
+    </span>
+    <span class="whatsapp-fab-label">Chat on WhatsApp</span>
+  </a>
+
+  <script>
+    const root = document.documentElement;
+    const themeToggle = document.getElementById("theme-toggle");
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+    const navWrap = document.querySelector(".nav-wrap");
+    const progress = document.querySelector(".progress");
+
+    themeToggle.addEventListener("click", () => {
+      const next = root.dataset.theme === "dark" ? "light" : "dark";
+      root.dataset.theme = next;
+      themeToggle.setAttribute("aria-label", `Switch to ${next === "dark" ? "light" : "dark"} theme`);
+      try { localStorage.setItem("portfolio-theme", next); } catch (_) {}
+    });
+
+    menuToggle.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(open));
+      menuToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    }));
+
+    const updateScroll = () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.transform = `scaleX(${maxScroll > 0 ? window.scrollY / maxScroll : 0})`;
+      navWrap.classList.toggle("scrolled", window.scrollY > 12);
+    };
+
+    updateScroll();
+    window.addEventListener("scroll", updateScroll, { passive: true });
+
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -30px" });
+
+    document.querySelectorAll(".reveal").forEach(element => revealObserver.observe(element));
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
