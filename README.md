@@ -45,9 +45,9 @@ Run these commands from this directory, replacing the repository URL with your o
 git init
 git add .
 git commit -m "Launch portfolio"
-git branch -M main
+git branch -M master
 git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
-git push -u origin main
+git push -u origin master
 ```
 
 ### 3. Enable GitHub Pages
@@ -55,9 +55,12 @@ git push -u origin main
 1. Open the repository on GitHub.
 2. Go to **Settings > Pages**.
 3. Under **Build and deployment**, choose **GitHub Actions** as the source.
-4. Open the **Actions** tab and wait for the `Deploy portfolio to GitHub Pages` workflow to finish.
+4. If the first deployment already failed with `Get Pages site failed: Not Found`, open the failed run and choose **Re-run all jobs**.
+5. Open the **Actions** tab and wait for the `Deploy portfolio to GitHub Pages` workflow to finish.
 
 The published URL will appear in the completed workflow and in **Settings > Pages**.
+
+> GitHub Pages must be enabled once in the repository settings before the deployment action can publish the site. The standard workflow token cannot safely perform this first-time enablement on its own.
 
 ## Updating the portfolio
 
@@ -69,4 +72,18 @@ git commit -m "Update portfolio"
 git push
 ```
 
-Every push to `main` automatically deploys the latest version.
+Every push to `master` automatically deploys the latest version.
+
+## Troubleshooting
+
+### `Get Pages site failed: Not Found`
+
+This means GitHub Pages is not enabled for the repository yet. Open **Settings > Pages**, select **GitHub Actions** under **Build and deployment**, save the setting, and re-run the failed workflow.
+
+### Node.js 20 deprecation warning
+
+The workflow uses `actions/configure-pages@v6` and `actions/deploy-pages@v5`, which run on Node.js 24. `actions/upload-pages-artifact@v4` remains the current upload action.
+
+### `ubuntu-latest` migration warning
+
+The workflow is pinned to `ubuntu-24.04`, so changes to the `ubuntu-latest` label will not alter this deployment unexpectedly.
