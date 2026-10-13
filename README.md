@@ -87,3 +87,4 @@ The workflow uses `actions/configure-pages@v6` and `actions/deploy-pages@v5`, wh
 ### `ubuntu-latest` migration warning
 
 The workflow is pinned to `ubuntu-24.04`, so changes to the `ubuntu-latest` label will not alter this deployment unexpectedly.
+
