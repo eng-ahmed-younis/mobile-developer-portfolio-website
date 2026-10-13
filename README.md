@@ -13,6 +13,7 @@ A responsive personal portfolio showcasing Native Android and Flutter experience
 │   ├── docs/
 │   │   └── Ahmed_Aly_Senior_Mobile_Developer.pdf
 │   └── images/
+│       ├── ahmed-aly-portrait.jpg
 │       ├── shift-app-promo.png
 │       └── shift-driver-promo.png
 ├── .gitignore

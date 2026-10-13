@@ -11,7 +11,8 @@
   <title>Ahmed Aly — Senior Mobile Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/images/ahmed-aly-portrait.jpg">
   <script>
     try {
       const savedTheme = localStorage.getItem("portfolio-theme");
@@ -256,12 +257,26 @@
     h1 {
       max-width: 760px;
       margin-bottom: 27px;
-      font-size: clamp(3.65rem, 7.2vw, 6.8rem);
       font-family: "Manrope", Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-optical-sizing: auto;
-      line-height: 0.98;
-      letter-spacing: -0.06em;
       font-weight: 700;
+    }
+
+    .hero-name {
+      display: block;
+      color: var(--ink);
+      font-size: clamp(4.35rem, 7vw, 7rem);
+      line-height: 0.9;
+      letter-spacing: -0.07em;
+    }
+
+    .hero-headline {
+      display: block;
+      max-width: 700px;
+      margin-top: 22px;
+      font-size: clamp(2.7rem, 4.65vw, 4.65rem);
+      line-height: 0.99;
+      letter-spacing: -0.055em;
     }
 
     h1 .accent-word {
@@ -342,6 +357,72 @@
       isolation: isolate;
     }
 
+    .portrait-card {
+      position: absolute;
+      top: 112px;
+      left: -8px;
+      z-index: 2;
+      width: 238px;
+      aspect-ratio: 0.72;
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      background: var(--surface);
+      box-shadow: 0 28px 74px rgba(0, 0, 0, 0.33);
+      transform: rotate(-4deg);
+      transition: transform 0.45s cubic-bezier(.2,.8,.2,1), box-shadow 0.45s ease;
+    }
+
+    .portrait-card::after {
+      content: "";
+      position: absolute;
+      inset: 42% 0 0;
+      background: linear-gradient(180deg, transparent, rgba(4, 7, 14, 0.9));
+      pointer-events: none;
+    }
+
+    .portrait-card img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: 50% 43%;
+      filter: saturate(0.92) contrast(1.04);
+    }
+
+    .portrait-caption {
+      position: absolute;
+      right: 22px;
+      bottom: 21px;
+      left: 22px;
+      z-index: 1;
+      color: #fff;
+    }
+
+    .portrait-caption strong {
+      display: block;
+      font-family: "Manrope", Inter, ui-sans-serif, sans-serif;
+      font-size: 19px;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    .portrait-caption span {
+      display: block;
+      margin-top: 5px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 9px;
+      font-weight: 750;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .system-visual:hover .portrait-card {
+      box-shadow: 0 34px 90px rgba(0, 0, 0, 0.42);
+      transform: rotate(-1.5deg) translate(-6px, -8px);
+    }
+
     .system-visual::before {
       content: "";
       position: absolute;
@@ -381,8 +462,10 @@
 
     .phone {
       position: relative;
+      z-index: 3;
       width: 292px;
       height: 568px;
+      margin-left: 154px;
       padding: 10px;
       border: 1px solid rgba(255, 255, 255, 0.13);
       border-radius: 49px;
@@ -509,8 +592,8 @@
     .signal strong { display: block; font-size: 11px; }
     .signal span { display: block; color: var(--muted); font-size: 9px; }
     .signal::before { content: ""; float: left; width: 8px; height: 8px; margin: 5px 9px 0 0; border-radius: 50%; background: var(--accent-2); }
-    .signal-one { top: 92px; left: 0; }
-    .signal-two { right: 0; bottom: 120px; animation-delay: -1.4s; }
+    .signal-one { top: 62px; right: 2px; }
+    .signal-two { left: 4px; bottom: 72px; animation-delay: -1.4s; }
     .signal-two::before { background: var(--accent); }
     @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
 
@@ -752,7 +835,7 @@
     @media (max-width: 1000px) {
       .hero { grid-template-columns: 1fr; padding-top: 70px; }
       .hero-copy { max-width: 720px; }
-      .system-visual { min-height: 610px; }
+      .system-visual { width: min(100%, 580px); min-height: 610px; margin-inline: auto; }
       .project-large, .project-medium { grid-column: 1 / -1; }
       .project-visual { opacity: 0.58; }
       .shift-featured { padding-right: 38%; }
@@ -790,10 +873,13 @@
       .nav-links a::after { display: none; }
       .menu-button { display: grid; }
       .hero { min-height: auto; gap: 40px; padding-block: 62px 82px; }
-      h1 { font-size: clamp(3.25rem, 15vw, 5.1rem); }
-      .system-visual { min-height: 540px; transform: scale(0.88); margin-inline: -30px; }
-      .signal-one { left: 15px; }
-      .signal-two { right: 15px; }
+      .hero-name { font-size: clamp(4rem, 17vw, 5.6rem); }
+      .hero-headline { margin-top: 18px; font-size: clamp(2.5rem, 11vw, 3.9rem); }
+      .system-visual { min-height: 560px; transform: none; margin-inline: auto; }
+      .portrait-card { top: 118px; left: 2%; width: min(45vw, 230px); }
+      .phone { width: 270px; height: 525px; margin-left: min(30vw, 142px); }
+      .signal-one { top: 62px; right: 15px; }
+      .signal-two { left: 15px; bottom: 56px; }
       .metrics { grid-template-columns: 1fr 1fr; }
       .metric:nth-child(2) { border-right: 0; }
       .metric:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
@@ -816,7 +902,15 @@
 
     @media (max-width: 480px) {
       .hero-actions .button { width: 100%; }
-      .system-visual { min-height: 495px; transform: scale(0.78); margin: -30px -60px; }
+      .system-visual { min-height: 500px; margin: 0; }
+      .portrait-card { top: 118px; left: 0; width: min(48vw, 190px); border-radius: 24px; }
+      .portrait-caption { right: 15px; bottom: 15px; left: 15px; }
+      .portrait-caption strong { font-size: 16px; }
+      .phone { width: 235px; height: 458px; margin-left: 30vw; border-radius: 40px; }
+      .phone-screen { border-radius: 32px; }
+      .signal { min-width: 130px; padding: 10px 11px; }
+      .signal-one { top: 50px; right: 0; }
+      .signal-two { left: 0; bottom: 28px; }
       .metric { min-height: 150px; padding: 30px 20px; }
       .project { padding: 27px; }
       .project-visual { opacity: 0.38; right: 2px; }
@@ -866,9 +960,12 @@
     <div class="shell hero" id="top">
       <div class="hero-content">
         <p class="eyebrow reveal">Senior Mobile Developer · Cairo</p>
-        <h1 class="reveal delay-1">Mobile products that move in <span class="accent-word">real time.</span></h1>
+        <h1 class="reveal delay-1">
+          <span class="hero-name">Ahmed Aly.</span>
+          <span class="hero-headline">Mobile products that move in <span class="accent-word">real time.</span></span>
+        </h1>
         <p class="hero-copy reveal delay-2">
-          I’m Ahmed, a mobile engineer with 4 years of experience building and scaling production apps across <strong>Native Android</strong> and <strong>Flutter</strong>—from live ride-hailing to last-mile logistics.
+          I’m a mobile engineer with 4 years of experience building and scaling production apps across <strong>Native Android</strong> and <strong>Flutter</strong>—from live ride-hailing to last-mile logistics.
         </p>
         <div class="hero-actions reveal delay-2">
           <a class="button button-primary" href="#work">
@@ -880,10 +977,14 @@
         <div class="availability reveal delay-2"><span class="pulse" aria-hidden="true"></span> Open to senior mobile roles and ambitious product teams</div>
       </div>
 
-      <div class="system-visual reveal delay-2" aria-label="Illustration of a live mobility application">
+      <div class="system-visual reveal delay-2" aria-label="Ahmed Aly alongside an illustration of a live mobility application">
         <div class="orbit" aria-hidden="true"></div>
-        <div class="signal signal-one"><strong>Offline-ready</strong><span>Room · Drift · Hive</span></div>
-        <div class="signal signal-two"><strong>Live systems</strong><span>Maps · GPS · Socket.IO</span></div>
+        <figure class="portrait-card">
+          <img src="assets/images/ahmed-aly-portrait.jpg" alt="Ahmed Aly, Senior Mobile Developer" width="1004" height="1800" loading="eager" fetchpriority="high">
+          <figcaption class="portrait-caption"><strong>Ahmed Aly</strong><span>Senior Mobile Developer</span></figcaption>
+        </figure>
+        <div class="signal signal-one"><strong>Android + Flutter</strong><span>Native and cross-platform</span></div>
+        <div class="signal signal-two"><strong>4+ years</strong><span>Production mobile products</span></div>
         <div class="phone">
           <div class="phone-screen">
             <div class="status-row"><span>9:41</span><span>5G&nbsp;&nbsp; 87%</span></div>
@@ -921,7 +1022,7 @@
           <div class="project-top"><span class="project-index">PRODUCT / 01</span><span class="project-platform">Native Android</span></div>
           <div class="project-visual is-poster"><img src="assets/images/shift-app-promo.png" alt="SHIFT car rental application showing nearby cars and rental options" loading="lazy"></div>
           <div class="project-body">
-            <div class="project-type">Carsharing & chauffeur</div>
+            <div class="project-type">Carsharing &amp; chauffeur</div>
             <h3>SHIFT</h3>
             <p>A customer mobility experience supporting bookings, maps, live trip updates, real-time communication, offline persistence, resilient networking, background work, and push notifications.</p>
             <div class="tags"><span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">MVI</span><span class="tag">Ktor</span><span class="tag">Socket.IO</span><span class="tag">Maps SDK</span></div>
@@ -1026,7 +1127,7 @@
       <div class="expertise-grid">
         <article class="expertise-card wide reveal">
           <div class="expertise-number"><span>01</span><span class="expertise-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M10 18h4"/></svg></span></div>
-          <h3>Native Android & cross-platform</h3>
+          <h3>Native Android &amp; cross-platform</h3>
           <p>Production engineering across Kotlin, Java, Jetpack Compose, XML, Flutter, and Dart—with native integration when platform-specific behavior matters.</p>
           <div class="skill-cloud"><span>Kotlin</span><span>Compose</span><span>Java</span><span>Flutter</span><span>Dart</span><span>MethodChannel</span><span>Swift</span></div>
         </article>
@@ -1039,19 +1140,19 @@
 
         <article class="expertise-card reveal">
           <div class="expertise-number"><span>03</span><span class="expertise-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12a8 8 0 0116 0M7 12a5 5 0 0110 0M10 12a2 2 0 014 0"/><circle cx="12" cy="17" r="1"/></svg></span></div>
-          <h3>Real-time & resilient</h3>
+          <h3>Real-time &amp; resilient</h3>
           <p>Socket.IO, REST, Ktor, Retrofit, Dio, circuit breakers, coroutines, Flow, Dart Streams, and reliable fallback strategies.</p>
         </article>
 
         <article class="expertise-card reveal delay-1">
           <div class="expertise-number"><span>04</span><span class="expertise-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span></div>
-          <h3>Security & reliability</h3>
+          <h3>Security &amp; reliability</h3>
           <p>Keystore, certificate pinning, TLS, AES/RSA, secure storage, offline persistence, background services, and app diagnostics.</p>
         </article>
 
         <article class="expertise-card reveal delay-2">
           <div class="expertise-number"><span>05</span><span class="expertise-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 17l5-5 4 4 7-8"/><path d="M14 8h6v6"/></svg></span></div>
-          <h3>Quality & delivery</h3>
+          <h3>Quality &amp; delivery</h3>
           <p>JUnit, MockK, Turbine, Flutter Test, BLoC Test, integration testing, static analysis, Fastlane, and Firebase App Distribution.</p>
         </article>
       </div>
